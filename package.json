@@ -1,0 +1,31 @@
+{
+	"name": "mcp-codebase-explorer",
+	"version": "1.0.0",
+	"type": "module",
+	"description": "MCP server that provides tools to explore and understand a code base",
+	"main": "dist/server.js",
+	"scripts": {
+		"build": "tsc",
+		"start": "node dist/server.js",
+		"dev": "tsx src/server.ts",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [
+		"mcp",
+		"codebase",
+		"explorer"
+	],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@modelcontextprotocol/sdk": "^1.12.0",
+		"fuzzysort": "^3.1.0",
+		"zod": "^3.25.36"
+	},
+	"devDependencies": {
+		"@types/node": "^22.15.24",
+		"ts-node": "^10.9.2",
+		"tsx": "^4.19.4",
+		"typescript": "^5.8.3"
+	}
+}
