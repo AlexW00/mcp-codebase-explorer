@@ -48,11 +48,21 @@ npm install
 
 ### Docker
 
-Build the Docker image:
+You can build the Docker image yourself or pull the prebuilt image from the GitHub Container Registry.
+
+#### Local build
 
 ```bash
 docker build -t mcp-codebase-explorer .
 ```
+
+#### Pull from GitHub
+
+```bash
+docker pull ghcr.io/alexw00/mcp-codebase-explorer:latest
+```
+
+An updated image is published automatically whenever the `main` branch is updated.
 
 ## Usage
 
@@ -78,19 +88,19 @@ Run the MCP server in a Docker container with your codebase mounted:
 docker run -it --rm \
   -v "/path/to/your/codebase:/workspace" \
   -e MCP_BASE_DIR=/workspace \
-  mcp-codebase-explorer
+  ghcr.io/alexw00/mcp-codebase-explorer:latest
 
 # Example: Mount current directory (properly quoted)
 docker run -it --rm \
   -v "$(pwd):/workspace" \
   -e MCP_BASE_DIR=/workspace \
-  mcp-codebase-explorer
+  ghcr.io/alexw00/mcp-codebase-explorer:latest
 
 # Example: Mount a specific directory with spaces
 docker run -it --rm \
   -v "/aw/Developer/Buffertab:/workspace" \
   -e MCP_BASE_DIR=/workspace \
-  mcp-codebase-explorer
+  ghcr.io/alexw00/mcp-codebase-explorer:latest
 ```
 
 ## VS Code Configuration
@@ -131,8 +141,8 @@ Add to your VS Code `settings.json`:
 				"-v",
 				"/path/to/your/codebase:/workspace",
 				"-e",
-				"MCP_BASE_DIR=/workspace",
-				"mcp-codebase-explorer"
+                                "MCP_BASE_DIR=/workspace",
+                                "ghcr.io/alexw00/mcp-codebase-explorer:latest"
 			]
 		}
 	}
@@ -157,8 +167,8 @@ For Claude Desktop, add to your `claude_desktop_config.json`:
 				"-v",
 				"/aw/Developer/Buffertab:/workspace",
 				"-e",
-				"MCP_BASE_DIR=/workspace",
-				"mcp-codebase-explorer"
+                                "MCP_BASE_DIR=/workspace",
+                                "ghcr.io/alexw00/mcp-codebase-explorer:latest"
 			]
 		}
 	}
@@ -178,13 +188,13 @@ If you encounter errors like "includes invalid characters for a local volume nam
 docker run -it --rm \
   -v "/path/with spaces:/workspace" \
   -e MCP_BASE_DIR=/workspace \
-  mcp-codebase-explorer
+  ghcr.io/alexw00/mcp-codebase-explorer:latest
 
 # ❌ Incorrect - unquoted paths with spaces
 docker run -it --rm \
   -v /path/with spaces:/workspace \
   -e MCP_BASE_DIR=/workspace \
-  mcp-codebase-explorer
+  ghcr.io/alexw00/mcp-codebase-explorer:latest
 ```
 
 ### Permission Issues
@@ -196,7 +206,7 @@ docker run -it --rm \
   -v "$(pwd):/workspace" \
   -e MCP_BASE_DIR=/workspace \
   --user "$(id -u):$(id -g)" \
-  mcp-codebase-explorer
+  ghcr.io/alexw00/mcp-codebase-explorer:latest
 ```
 
 ## Implementation Details
