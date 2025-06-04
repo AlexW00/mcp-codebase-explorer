@@ -169,13 +169,13 @@ export function registerTools(server: McpServer) {
 	);
 
 	// Search directory tool
-	server.tool(
-		"search_dir",
-		"Search for files and directories by name using regular expressions",
-		{
-			regex: z
-				.string()
-				.describe("Regular expression pattern to match file/directory names"),
+        server.tool(
+                "search_dir",
+                "Search for files and directories using a regular expression applied to the full path",
+                {
+                        regex: z
+                                .string()
+                                .describe("Regular expression pattern to match file/directory paths"),
 			subdir: z
 				.string()
 				.optional()
