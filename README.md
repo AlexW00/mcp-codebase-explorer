@@ -43,6 +43,7 @@ All file operations are restricted to a configurable base directory for security
 
 ```bash
 npm install
+# ripgrep is installed automatically as part of the dependencies
 ```
 
 ### Docker

@@ -1,9 +1,9 @@
-import { exec } from "child_process";
+import { execFile } from "child_process";
 import { promisify } from "util";
-import path from "path";
+import { rgPath } from "@vscode/ripgrep";
 import { resolvePath, validatePath } from "../utils/pathUtils.js";
 
-const execPromise = promisify(exec);
+const execFilePromise = promisify(execFile);
 
 interface SearchResult {
 	file: string;
@@ -32,11 +32,22 @@ export async function searchFileContentsRegex(
 		const searchDir = subdir ? resolvePath(subdir) : resolvePath(".");
 		validatePath(searchDir);
 
-		// Construct the ripgrep command
-		// Using -n for line numbers, -A and -B for context, --json for structured output
-		const command = `rg "${regex}" ${searchDir} -n --json -A ${context} -B ${context} --max-count=${maxResults}`;
+                // Execute ripgrep using the bundled binary path
+                // -n for line numbers, -A and -B for context, --json for structured output
+                const args = [
+                        regex,
+                        searchDir,
+                        "-n",
+                        "--json",
+                        "-A",
+                        String(context),
+                        "-B",
+                        String(context),
+                        "--max-count",
+                        String(maxResults),
+                ];
 
-		const { stdout } = await execPromise(command);
+                const { stdout } = await execFilePromise(rgPath, args);
 
 		// Parse the JSON output from ripgrep
 		const results: SearchResult[] = [];
