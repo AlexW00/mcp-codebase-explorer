@@ -22,7 +22,7 @@ The server implements the following tools:
 
    - Parameters: `query`, optional `subdir`, optional `max_results` (default: 25), optional `context` (default: 5)
 
-5. **search_dir** - Search for files and directories by name using regex
+5. **search_dir** - Search for files and directories using a regex matched against the full path
 
    - Parameters: `regex`, optional `subdir`, optional `max_results` (default: 50)
 

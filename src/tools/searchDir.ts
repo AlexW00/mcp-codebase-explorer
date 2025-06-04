@@ -12,8 +12,11 @@ interface DirSearchResult {
 }
 
 /**
- * Search for files and directories by name using regex
- * @param regex Regular expression pattern to match file/directory names
+ * Search for files and directories using a regex applied to the full path.
+ * The regular expression is matched against the entire path, not just the
+ * basename of the file or directory.
+ *
+ * @param regex Regular expression pattern to match file/directory paths
  * @param subdir Optional subdirectory to limit search scope
  * @param maxResults Maximum number of results to return (default: 50)
  * @returns Array of matching files and directories
