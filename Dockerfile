@@ -2,7 +2,7 @@
 FROM node:20-alpine
 
 # Install additional tools for file operations
-RUN apk add --no-cache findutils
+RUN apk add --no-cache findutils ripgrep
 
 # Set working directory
 WORKDIR /app

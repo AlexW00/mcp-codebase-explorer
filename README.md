@@ -43,6 +43,8 @@ All file operations are restricted to a configurable base directory for security
 
 ```bash
 npm install
+# install ripgrep if not already available
+sudo apt-get update && sudo apt-get install -y ripgrep
 ```
 
 ### Docker
